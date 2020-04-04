@@ -1,0 +1,27 @@
+name: Maven Central
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.1.0
+
+      - name: Install Java and Maven
+        uses: actions/setup-java@v1.3.0
+        with:
+          java-version: 8
+
+      - name: Release Maven package
+        uses: samuelmeuli/action-maven-publish@v1.3.2
+        maven_args: -P release
+        with:
+          gpg_private_key: ${{ secrets.gpg_private_key }}
+          gpg_passphrase: ${{ secrets.gpg_passphrase }}
+          nexus_username: ${{ secrets.nexus_username }}
+          nexus_password: ${{ secrets.nexus_password }}

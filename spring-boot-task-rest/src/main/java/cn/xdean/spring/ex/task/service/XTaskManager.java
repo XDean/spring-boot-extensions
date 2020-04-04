@@ -1,4 +1,4 @@
-package cn.xdean.spring.ex.task.handler;
+package cn.xdean.spring.ex.task.service;
 
 import cn.xdean.spring.ex.task.XTask;
 import cn.xdean.spring.ex.task.XTaskLogger;
@@ -7,6 +7,7 @@ import cn.xdean.spring.ex.task.dao.XTaskLogRepository;
 import cn.xdean.spring.ex.task.model.XTaskLogEntity;
 import cn.xdean.spring.ex.task.model.XTaskRunInfo;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.Subject;
 import io.reactivex.subjects.UnicastSubject;
 import lombok.Value;
@@ -15,10 +16,10 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.lang.Nullable;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
-import org.springframework.stereotype.Service;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -31,13 +32,19 @@ public class XTaskManager implements SchedulingConfigurer, XTaskService, Disposa
 
     @Autowired(required = false)
     List<XTask> tasks = Collections.emptyList();
+
     @Autowired
     XTaskLogRepository logRepository;
 
-    @Autowired
+    @Nullable
     TaskScheduler scheduler;
 
     private final List<TaskRunImpl> runs = new ArrayList<>();
+
+    @Autowired(required = false)
+    public void setScheduler(TaskScheduler scheduler) {
+        this.scheduler = scheduler;
+    }
 
     @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
@@ -69,7 +76,11 @@ public class XTaskManager implements SchedulingConfigurer, XTaskService, Disposa
     @Override
     public int run(XTask task, String who) {
         TaskRunImpl r = new TaskRunImpl(task, who);
-        scheduler.schedule(r::run, new Date());
+        if (scheduler == null) {
+            Schedulers.io().scheduleDirect(r::run);
+        } else {
+            scheduler.schedule(r::run, new Date());
+        }
         return r.runId;
     }
 

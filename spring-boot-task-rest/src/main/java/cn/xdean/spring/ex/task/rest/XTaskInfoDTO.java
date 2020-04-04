@@ -1,4 +1,4 @@
-package cn.xdean.spring.ex.task.controller;
+package cn.xdean.spring.ex.task.rest;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;

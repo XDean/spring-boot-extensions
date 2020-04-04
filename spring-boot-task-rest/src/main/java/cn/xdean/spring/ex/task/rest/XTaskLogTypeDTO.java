@@ -1,4 +1,4 @@
-package cn.xdean.spring.ex.task.controller;
+package cn.xdean.spring.ex.task.rest;
 
 import cn.xdean.spring.ex.task.model.XTaskLogEntity;
 import com.fasterxml.jackson.annotation.JsonValue;

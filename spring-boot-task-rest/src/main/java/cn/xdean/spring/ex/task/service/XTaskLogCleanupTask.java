@@ -1,4 +1,4 @@
-package cn.xdean.spring.ex.task.handler;
+package cn.xdean.spring.ex.task.service;
 
 import cn.xdean.spring.ex.task.XTask;
 import cn.xdean.spring.ex.task.XTaskLogger;
@@ -6,7 +6,6 @@ import cn.xdean.spring.ex.task.XTaskProperties;
 import cn.xdean.spring.ex.task.dao.XTaskLogRepository;
 import cn.xdean.spring.ex.task.model.XTaskLogEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Duration;

@@ -9,7 +9,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
 public interface XTaskLogRepository extends JpaRepository<XTaskLogEntity, Integer> {
     Optional<XTaskLogEntity> findFirstByTaskIdOrderByRunIdDesc(String taskId);
 

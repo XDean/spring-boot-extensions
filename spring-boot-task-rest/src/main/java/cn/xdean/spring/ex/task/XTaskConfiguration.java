@@ -27,13 +27,11 @@ public class XTaskConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(XTaskService.class)
-    @ConditionalOnBean(XTaskLogRepository.class)
     public XTaskService xTaskService() {
         return new XTaskManager();
     }
 
     @Bean
-    @ConditionalOnBean(XTaskLogRepository.class)
     public XTaskLogCleanupTask xTaskLogCleanupTask() {
         return new XTaskLogCleanupTask();
     }

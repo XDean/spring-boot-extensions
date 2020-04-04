@@ -7,7 +7,7 @@ import java.time.Duration;
 @Data
 public class XTaskProperties {
 
-    Cleanup cleanup;
+    Cleanup cleanup = new Cleanup();
 
     @Data
     public static class Cleanup {

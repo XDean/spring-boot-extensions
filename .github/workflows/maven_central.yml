@@ -20,7 +20,6 @@ jobs:
       - name: Release Maven package
         uses: XDean/action-maven-publish@v1.3.3
         with:
-          maven_args: -P release
           maven_profiles: release
           gpg_private_key: ${{ secrets.gpg_private_key }}
           gpg_passphrase: ${{ secrets.gpg_passphrase }}

@@ -1,6 +1,6 @@
 package cn.xdean.spring.ex.websocket.interceptor;
 
-import cn.xdean.spring.ex.websocket.WebSocketProvider;
+import cn.xdean.spring.ex.websocket.XWebSocketHandler;
 import org.springframework.core.convert.ConversionException;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.http.server.ServerHttpRequest;
@@ -30,10 +30,10 @@ public class PathTemplateInterceptor implements HandshakeInterceptor {
         if (wsHandler instanceof WebSocketHandlerDecorator) {
             wsHandler = ((WebSocketHandlerDecorator) wsHandler).getLastHandler();
         }
-        if (!(wsHandler instanceof WebSocketProvider)) {
+        if (!(wsHandler instanceof XWebSocketHandler)) {
             return true;
         }
-        Map<String, String> vars = pathMatcher.extractUriTemplateVariables(((WebSocketProvider) wsHandler).path(), request.getURI().getPath());
+        Map<String, String> vars = pathMatcher.extractUriTemplateVariables(((XWebSocketHandler) wsHandler).path(), request.getURI().getPath());
         attributes.put(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE, vars);
         return true;
     }

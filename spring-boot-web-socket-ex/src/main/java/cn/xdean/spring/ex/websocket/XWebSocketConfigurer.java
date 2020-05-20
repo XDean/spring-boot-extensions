@@ -11,10 +11,10 @@ import java.util.Collections;
 import java.util.List;
 
 @Configuration
-@ConditionalOnBean(WebSocketProvider.class)
-public class WebSocketProviderConfigurer implements WebSocketConfigurer {
+@ConditionalOnBean(XWebSocketHandler.class)
+public class XWebSocketConfigurer implements WebSocketConfigurer {
 
-    @Autowired(required = false) List<WebSocketProvider> providers = Collections.emptyList();
+    @Autowired(required = false) List<XWebSocketHandler> providers = Collections.emptyList();
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {

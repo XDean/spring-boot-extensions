@@ -15,5 +15,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.XDean</groupId>
+            <artifactId>auto-spring-factories</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 </project>

@@ -1,8 +1,8 @@
 package cn.xdean.spring.ex.websocket.interceptor;
 
-import cn.xdean.spring.ex.websocket.XWebSocketHandler;
+import cn.xdean.spring.ex.websocket.WebSocketProvider;
 import org.springframework.core.convert.ConversionException;
-import org.springframework.core.convert.support.GenericConversionService;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.util.AntPathMatcher;
@@ -18,9 +18,9 @@ import java.util.Optional;
 public class PathTemplateInterceptor implements HandshakeInterceptor {
     private final AntPathMatcher pathMatcher = new AntPathMatcher();
 
-    GenericConversionService conversionService;
+    private final ConversionService conversionService;
 
-    public PathTemplateInterceptor(GenericConversionService conversionService) {
+    public PathTemplateInterceptor(ConversionService conversionService) {
         this.conversionService = conversionService;
     }
 
@@ -30,10 +30,10 @@ public class PathTemplateInterceptor implements HandshakeInterceptor {
         if (wsHandler instanceof WebSocketHandlerDecorator) {
             wsHandler = ((WebSocketHandlerDecorator) wsHandler).getLastHandler();
         }
-        if (!(wsHandler instanceof XWebSocketHandler)) {
+        if (!(wsHandler instanceof WebSocketProvider)) {
             return true;
         }
-        Map<String, String> vars = pathMatcher.extractUriTemplateVariables(((XWebSocketHandler) wsHandler).path(), request.getURI().getPath());
+        Map<String, String> vars = pathMatcher.extractUriTemplateVariables(((WebSocketProvider) wsHandler).path(), request.getURI().getPath());
         attributes.put(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE, vars);
         return true;
     }

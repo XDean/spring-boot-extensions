@@ -8,7 +8,7 @@ import org.springframework.web.socket.server.HandshakeInterceptor;
 import java.util.Collections;
 import java.util.List;
 
-public interface XWebSocketHandler extends WebSocketHandler {
+public interface WebSocketProvider extends WebSocketHandler {
     String path();
 
     default List<String> allowOrigins() {

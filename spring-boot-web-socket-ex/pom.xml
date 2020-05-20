@@ -17,6 +17,11 @@
         </dependency>
 
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
             <groupId>com.github.XDean</groupId>
             <artifactId>auto-spring-factories</artifactId>
             <scope>provided</scope>

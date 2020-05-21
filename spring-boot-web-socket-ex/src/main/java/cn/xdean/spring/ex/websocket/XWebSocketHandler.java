@@ -23,4 +23,8 @@ public interface XWebSocketHandler extends WebSocketHandler {
     default List<HandshakeInterceptor> getHandshakeInterceptors() {
         return Collections.emptyList();
     }
+
+    default XWebSocketHandler decorate() {
+        return this;
+    }
 }

@@ -19,7 +19,7 @@ public class XWebSocketConfigurer implements WebSocketConfigurer {
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         providers.forEach(p -> registry
-                .addHandler(p, p.path())
+                .addHandler(p.decorate(), p.path())
                 .setAllowedOrigins(p.allowOrigins().toArray(new String[0]))
                 .setHandshakeHandler(p.getHandShakeHandler())
                 .addInterceptors(p.getHandshakeInterceptors().toArray(new HandshakeInterceptor[0])));

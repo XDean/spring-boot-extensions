@@ -27,4 +27,10 @@ public class WebSocketTopicConfiguration {
     public ObjectMapper objectMapper() {
         return new ObjectMapper();
     }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public WebSocketTopicExceptionHandler exceptionHandler() {
+        return new WebSocketTopicExceptionHandler();
+    }
 }

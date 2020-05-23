@@ -1,5 +1,6 @@
 package cn.xdean.spring.ex.websocket;
 
+import cn.xdean.spring.ex.websocket.decorator.handler.HandlerDecoratorConfiguration;
 import cn.xdean.spring.ex.websocket.interceptor.WebSocketInterceptorConfiguration;
 import cn.xdean.spring.ex.websocket.topic.WebSocketTopicConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -13,6 +14,7 @@ import xdean.spring.auto.AutoSpringFactories;
         XWebSocketConfigurer.class,
         WebSocketInterceptorConfiguration.class,
         WebSocketTopicConfiguration.class,
+        HandlerDecoratorConfiguration.class,
 })
 public class XWebSocketAutoConfiguration {
 

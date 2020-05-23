@@ -24,7 +24,7 @@ public interface XWebSocketHandler extends WebSocketHandler {
         return Collections.emptyList();
     }
 
-    default XWebSocketHandler decorate() {
+    default WebSocketHandler decorate() {
         return this;
     }
 }

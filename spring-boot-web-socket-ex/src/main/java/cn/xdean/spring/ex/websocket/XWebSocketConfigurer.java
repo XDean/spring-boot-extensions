@@ -1,7 +1,6 @@
 package cn.xdean.spring.ex.websocket;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
@@ -11,7 +10,6 @@ import java.util.Collections;
 import java.util.List;
 
 @Configuration
-@ConditionalOnBean(XWebSocketHandler.class)
 public class XWebSocketConfigurer implements WebSocketConfigurer {
 
     @Autowired(required = false) List<XWebSocketHandler> providers = Collections.emptyList();

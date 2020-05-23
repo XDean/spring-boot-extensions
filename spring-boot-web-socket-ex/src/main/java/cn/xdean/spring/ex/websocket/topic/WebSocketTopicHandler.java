@@ -49,4 +49,9 @@ public class WebSocketTopicHandler extends TextWebSocketHandler implements XWebS
             }
         });
     }
+
+    @Override
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+        handlers.remove(session);
+    }
 }

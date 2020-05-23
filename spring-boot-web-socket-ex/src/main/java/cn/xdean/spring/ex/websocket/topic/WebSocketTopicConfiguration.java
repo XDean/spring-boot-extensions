@@ -29,6 +29,11 @@ public class WebSocketTopicConfiguration {
     }
 
     @Bean
+    public WebSocketTopicHelper webSocketTopicHelper() {
+        return new WebSocketTopicHelper();
+    }
+
+    @Bean
     @ConditionalOnMissingBean
     public WebSocketTopicExceptionHandler exceptionHandler() {
         return new WebSocketTopicExceptionHandler();

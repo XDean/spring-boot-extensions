@@ -6,9 +6,11 @@ import cn.xdean.spring.ex.websocket.topic.WebSocketTopicConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import xdean.spring.auto.AutoSpringFactories;
 
 @Configuration
+@EnableWebSocket
 @AutoSpringFactories(EnableAutoConfiguration.class)
 @Import({
         XWebSocketConfigurer.class,
